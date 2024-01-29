@@ -1,10 +1,7 @@
 package Presentation;
 
-import Accessor.*;
-import Presentation.*;
 import Slide.*;
-import Style.*;
-import Utility.*;
+import Slide.Viewer.SlideViewerComponent;
 
 import java.util.ArrayList;
 

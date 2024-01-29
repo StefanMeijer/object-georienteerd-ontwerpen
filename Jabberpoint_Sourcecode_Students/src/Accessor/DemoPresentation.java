@@ -1,10 +1,8 @@
 package Accessor;
 
-import Accessor.*;
 import Presentation.*;
 import Slide.*;
-import Style.*;
-import Utility.*;
+import Slide.Item.BitmapItem;
 
 /**
  * A built-in demo presentation
@@ -17,8 +15,7 @@ class DemoPresentation extends Accessor {
 
     public void loadFile(Presentation presentation, String unusedFilename) {
         presentation.setShowTitle("Demo Presentation.Presentation");
-        Slide slide;
-        slide = new Slide();
+        Slide slide = SlideFactory.createSlide();
         slide.setTitle("JabberPoint");
         slide.append(1, "The Java prestentation tool");
         slide.append(2, "Copyright (c) 1996-2000: Ian Darwin");
@@ -32,7 +29,7 @@ class DemoPresentation extends Accessor {
         slide.append(3, "Quit: q or Q");
         presentation.append(slide);
 
-        slide = new Slide();
+        slide = SlideFactory.createSlide();
         slide.setTitle("Demonstration of levels and styles");
         slide.append(1, "Level 1");
         slide.append(2, "Level 2");
@@ -43,7 +40,7 @@ class DemoPresentation extends Accessor {
         slide.append(4, "And this is level 4");
         presentation.append(slide);
 
-        slide = new Slide();
+        slide = SlideFactory.createSlide();
         slide.setTitle("The third slide");
         slide.append(1, "To open a new presentation,");
         slide.append(2, "use File->Open from the menu.");

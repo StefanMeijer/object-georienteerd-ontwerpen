@@ -9,7 +9,7 @@ import Utility.*;
 import java.awt.Color;
 
 public class StyleFactory {
-    private static Style[] styles; // de styles
+    private static Style[] styles;
 
     // Private constructor to prevent instantiation
     private StyleFactory() {

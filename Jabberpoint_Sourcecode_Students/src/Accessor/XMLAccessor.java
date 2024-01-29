@@ -1,5 +1,7 @@
 package Accessor;
 
+import Slide.Item.BitmapItem;
+import Slide.Item.SlideItem;
 import Accessor.*;
 import Presentation.*;
 import Slide.*;
@@ -18,7 +20,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import Presentation.Presentation;
 import Slide.Slide;
-import Slide.TextItem;
+import Slide.Item.TextItem;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -78,7 +80,7 @@ public class XMLAccessor extends Accessor {
             max = slides.getLength();
             for (slideNumber = 0; slideNumber < max; slideNumber++) {
                 Element xmlSlide = (Element) slides.item(slideNumber);
-                Slide slide = new Slide();
+                Slide slide = SlideFactory.createSlide();
                 slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
                 presentation.append(slide);
 

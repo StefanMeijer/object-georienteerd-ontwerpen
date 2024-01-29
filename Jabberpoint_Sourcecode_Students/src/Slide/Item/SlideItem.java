@@ -1,4 +1,4 @@
-package Slide;
+package Slide.Item;
 
 import Accessor.*;
 import Presentation.*;
@@ -19,7 +19,7 @@ import java.awt.image.ImageObserver;
  */
 
 public abstract class SlideItem {
-    private int level = 0; //The level of the Slide.SlideItem
+    private int level = 0; //The level of the Slide.Item.SlideItem
 
     public SlideItem(int Level) {
         this.level = Level;

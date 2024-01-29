@@ -1,8 +1,7 @@
 import Accessor.*;
 import Presentation.*;
-import Slide.*;
+import Slide.Viewer.SlideViewerFrame;
 import Style.*;
-import Utility.*;
 
 import javax.swing.JOptionPane;
 import java.io.IOException;

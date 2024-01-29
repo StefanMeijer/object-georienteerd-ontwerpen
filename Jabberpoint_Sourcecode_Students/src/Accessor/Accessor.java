@@ -1,6 +1,10 @@
 package Accessor;
 
-import Presentation.Presentation;
+import Accessor.*;
+import Presentation.*;
+import Slide.*;
+import Style.*;
+import Utility.*;
 
 import java.io.IOException;
 

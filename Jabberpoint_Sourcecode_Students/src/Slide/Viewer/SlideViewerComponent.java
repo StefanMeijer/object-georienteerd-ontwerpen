@@ -1,4 +1,4 @@
-package Slide;
+package Slide.Viewer;
 
 import Accessor.*;
 import Presentation.*;
@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 
 
 /**
- * <p>Slide.SlideViewerComponent is a graphical component that ca display Slides.</p>
+ * <p>Slide.Viewer.SlideViewerComponent is a graphical component that ca display Slides.</p>
  *
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.6 2014/05/16 Sylvia Stuurman

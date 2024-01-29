@@ -1,9 +1,6 @@
-package Slide;
+package Slide.Viewer;
 
-import Accessor.*;
 import Presentation.*;
-import Slide.*;
-import Style.*;
 import Utility.*;
 
 import java.awt.Dimension;

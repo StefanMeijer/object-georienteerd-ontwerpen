@@ -1,10 +1,8 @@
 package Slide;
 
-import Accessor.*;
-import Presentation.*;
-import Slide.*;
+import Slide.Item.SlideItem;
+import Slide.Item.TextItem;
 import Style.*;
-import Utility.*;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -28,12 +26,12 @@ public class Slide {
         this.items = new Vector<>();
     }
 
-    //Add a Slide.SlideItem
+    //Add a Slide.Item.SlideItem
     public void append(SlideItem anItem) {
         getItems().addElement(anItem);
     }
 
-    //Create a Slide.TextItem out of a String and add the Slide.TextItem
+    //Create a Slide.Item.TextItem out of a String and add the Slide.Item.TextItem
     public void append(int level, String message) {
         append(new TextItem(level, message));
     }

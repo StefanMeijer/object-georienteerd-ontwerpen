@@ -1,10 +1,7 @@
-package Slide;
+package Slide.Item;
 
-import Accessor.*;
-import Presentation.*;
 import Slide.*;
 import Style.*;
-import Utility.*;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -107,6 +104,6 @@ public class TextItem extends SlideItem {
     }
 
     public String toString() {
-        return "Slide.TextItem[" + getLevel() + "," + getText() + "]";
+        return "Slide.Item.TextItem[" + getLevel() + "," + getText() + "]";
     }
 }
