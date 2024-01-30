@@ -5,6 +5,7 @@ import Slide.Item.SlideItem;
 import Accessor.*;
 import Presentation.*;
 import Slide.*;
+import Slide.Item.SlideItemFactory;
 import Style.*;
 import Utility.*;
 
@@ -113,10 +114,10 @@ public class XMLAccessor extends Accessor {
         }
         String type = attributes.getNamedItem(KIND).getTextContent();
         if (TEXT.equals(type)) {
-            slide.append(new TextItem(level, item.getTextContent()));
+            slide.append(SlideItemFactory.createTextItem(level, item.getTextContent()));
         } else {
             if (IMAGE.equals(type)) {
-                slide.append(new BitmapItem(level, item.getTextContent()));
+                slide.append(SlideItemFactory.createBitmapItem(level, item.getTextContent()));
             } else {
                 System.err.println(UNKNOWNTYPE);
             }

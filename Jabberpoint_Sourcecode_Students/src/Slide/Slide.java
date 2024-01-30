@@ -1,6 +1,7 @@
 package Slide;
 
 import Slide.Item.SlideItem;
+import Slide.Item.SlideItemFactory;
 import Slide.Item.TextItem;
 import Style.*;
 
@@ -33,7 +34,7 @@ public class Slide {
 
     //Create a Slide.Item.TextItem out of a String and add the Slide.Item.TextItem
     public void append(int level, String message) {
-        append(new TextItem(level, message));
+        append(SlideItemFactory.createTextItem(level, message));
     }
 
     //Draws the slide
@@ -41,7 +42,7 @@ public class Slide {
         float scale = getScale(area);
         int y = area.y;
         //The title is treated separately
-        SlideItem slideItem = new TextItem(0, getTitle());
+        SlideItem slideItem = SlideItemFactory.createTextItem(0, getTitle());
         Style style = StyleFactory.getStyle(slideItem.getLevel());
         slideItem.draw(area.x, y, scale, g, style, view);
         y += slideItem.getBoundingBox(g, view, scale, style).height;
