@@ -1,22 +1,21 @@
-package Accessor;
+package Presentation;
 
+import Accessor.XMLAccessor;
+import Slide.Item.SlideItemFactory;
+import Slide.Slide;
+import Accessor.*;
 import Presentation.*;
 import Slide.*;
-import Slide.Item.BitmapItem;
-import Slide.Item.SlideItem;
-import Slide.Item.SlideItemFactory;
-import Slide.Item.TextItem;
+import Style.*;
+import Utility.*;
 import Menu.*;
 
-/**
- * A built-in demo presentation
- *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
- */
-class DemoPresentation extends Accessor {
+public class PresentationFactory {
+    public static Presentation createPresentation() {
+        return new Presentation();
+    }
 
-    public void loadFile(Presentation presentation, String unusedFilename) {
+    public static void createDemoPresentation(Presentation presentation) {
         presentation.setShowTitle("Demo Presentation.Presentation");
 
         Slide slide = SlideFactory.createSlide();
@@ -52,9 +51,5 @@ class DemoPresentation extends Accessor {
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createTextItem(1, "This is the end of the presentation."), slide);
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createBitmapItem(1, "assets/images/JabberPoint.jpg"), slide);
         presentation.append(slide);
-    }
-
-    public void saveFile(Presentation presentation, String unusedFilename) {
-        throw new IllegalStateException("Save As->Demo! called");
     }
 }

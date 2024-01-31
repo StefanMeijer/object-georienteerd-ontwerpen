@@ -80,8 +80,9 @@ public class MenuController extends MenuBar {
     //Actions
     private void openFileAction(ActionEvent actionEvent) {
         getPresentation().clear();
-        Accessor xmlAccessor = new XMLAccessor();
-        try {
+
+        XMLAccessor xmlAccessor = AccessorFactory.createXMLAccessor()
+;        try {
             xmlAccessor.loadFile(getPresentation(), TESTFILE);
             getPresentation().setCurrentSlideNumber(0);
         } catch (IOException exc) {
@@ -97,7 +98,7 @@ public class MenuController extends MenuBar {
     }
 
     private void saveFileAction(ActionEvent e) {
-        Accessor xmlAccessor = new XMLAccessor();
+        XMLAccessor xmlAccessor = AccessorFactory.createXMLAccessor();
         try {
             xmlAccessor.saveFile(getPresentation(), SAVEFILE);
         } catch (IOException exc) {

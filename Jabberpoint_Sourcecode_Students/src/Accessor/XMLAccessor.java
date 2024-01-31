@@ -2,13 +2,9 @@ package Accessor;
 
 import Slide.Item.BitmapItem;
 import Slide.Item.SlideItem;
-import Accessor.*;
-import Presentation.*;
 import Slide.*;
 import Slide.Item.SlideItemFactory;
-import Style.*;
 import Utility.*;
-import Menu.*;
 
 import java.util.Vector;
 import java.io.File;
@@ -37,7 +33,7 @@ import org.w3c.dom.NodeList;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class XMLAccessor extends Accessor {
+public class XMLAccessor implements LoadController, SaveController {
 
     /**
      * Default API to use.
@@ -67,6 +63,28 @@ public class XMLAccessor extends Accessor {
         NodeList titles = element.getElementsByTagName(tagName);
         return titles.item(0).getTextContent();
 
+    }
+    protected void loadSlideItem(Slide slide, Element item) {
+        int level = 1; // default
+        NamedNodeMap attributes = item.getAttributes();
+        String leveltext = attributes.getNamedItem(LEVEL).getTextContent();
+        if (leveltext != null) {
+            try {
+                level = Integer.parseInt(leveltext);
+            } catch (NumberFormatException x) {
+                System.err.println(NFE);
+            }
+        }
+        String type = attributes.getNamedItem(KIND).getTextContent();
+        if (TEXT.equals(type)) {
+            slide.append(SlideItemFactory.createTextItem(level, item.getTextContent()));
+        } else {
+            if (IMAGE.equals(type)) {
+                slide.append(SlideItemFactory.createBitmapItem(level, item.getTextContent()));
+            } else {
+                System.err.println(UNKNOWNTYPE);
+            }
+        }
     }
 
     public void loadFile(Presentation presentation, String filename) throws IOException {
@@ -100,30 +118,6 @@ public class XMLAccessor extends Accessor {
             System.err.println(PCE);
         }
     }
-
-    protected void loadSlideItem(Slide slide, Element item) {
-        int level = 1; // default
-        NamedNodeMap attributes = item.getAttributes();
-        String leveltext = attributes.getNamedItem(LEVEL).getTextContent();
-        if (leveltext != null) {
-            try {
-                level = Integer.parseInt(leveltext);
-            } catch (NumberFormatException x) {
-                System.err.println(NFE);
-            }
-        }
-        String type = attributes.getNamedItem(KIND).getTextContent();
-        if (TEXT.equals(type)) {
-            slide.append(SlideItemFactory.createTextItem(level, item.getTextContent()));
-        } else {
-            if (IMAGE.equals(type)) {
-                slide.append(SlideItemFactory.createBitmapItem(level, item.getTextContent()));
-            } else {
-                System.err.println(UNKNOWNTYPE);
-            }
-        }
-    }
-
     public void saveFile(Presentation presentation, String filename) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(filename));
         out.println("<?xml version=\"1.0\"?>");

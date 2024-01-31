@@ -2,7 +2,6 @@ import Accessor.*;
 import Presentation.*;
 import Slide.Viewer.SlideViewerFrame;
 import Style.*;
-import Menu.*;
 
 import javax.swing.JOptionPane;
 import java.io.IOException;
@@ -28,14 +27,14 @@ public class JabberPoint {
      */
     public static void main(String[] argv) {
         StyleFactory.createStyles();
-        Presentation presentation = new Presentation();
+        Presentation presentation = PresentationFactory.createPresentation();
         new SlideViewerFrame(JABVERSION, presentation);
 
         try {
             if (argv.length == 0) { //a demo presentation
-                Accessor.getDemoAccessor().loadFile(presentation, "");
+               PresentationFactory.createDemoPresentation(presentation);
             } else {
-                new XMLAccessor().loadFile(presentation, argv[0]);
+                AccessorFactory.createXMLAccessor().loadFile(presentation, argv[0]);
             }
 
             presentation.setCurrentSlideNumber(0);
