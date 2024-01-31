@@ -5,6 +5,7 @@ import Presentation.*;
 import Slide.*;
 import Style.*;
 import Utility.*;
+import Menu.*;
 
 import java.awt.Color;
 import java.awt.Font;

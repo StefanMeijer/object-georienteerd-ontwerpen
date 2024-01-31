@@ -1,6 +1,7 @@
 package Slide.Item;
 
 import Style.*;
+import Menu.*;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -30,32 +31,32 @@ public class BitmapItem extends SlideItem {
     //level indicates the item-level; name indicates the name of the file with the image
     public BitmapItem(int level, String name) {
         super(level);
-        imageName = name;
+        setImageName(name);
         try {
-            bufferedImage = ImageIO.read(new File(imageName));
+            this.setBufferedImage(ImageIO.read(new File(getImageName())));
         } catch (IOException e) {
-            System.err.println(FILE + imageName + NOTFOUND);
+            System.err.println(FILE + getImageName() + NOTFOUND);
         }
     }
 
     //Returns the bounding box of the image
     public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
         return new Rectangle((int) (myStyle.getIndent() * scale), 0,
-                (int) (bufferedImage.getWidth(observer) * scale),
+                (int) (this.getBufferedImage().getWidth(observer) * scale),
                 ((int) (myStyle.getLeading() * scale)) +
-                        (int) (bufferedImage.getHeight(observer) * scale));
+                        (int) (this.getBufferedImage().getHeight(observer) * scale));
     }
 
     //Draws the image
     public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
         int width = x + (int) (myStyle.getIndent() * scale);
         int height = y + (int) (myStyle.getLeading() * scale);
-        g.drawImage(bufferedImage, width, height, (int) (bufferedImage.getWidth(observer) * scale),
-                (int) (bufferedImage.getHeight(observer) * scale), observer);
+        g.drawImage(this.getBufferedImage(), width, height, (int) (this.getBufferedImage().getWidth(observer) * scale),
+                (int) (this.getBufferedImage().getHeight(observer) * scale), observer);
     }
 
     public String toString() {
-        return "Slide.Item.BitmapItem[" + getLevel() + "," + imageName + "]";
+        return "Slide.Item.BitmapItem[" + getLevel() + "," + getImageName() + "]";
     }
 
     public BufferedImage getBufferedImage() {

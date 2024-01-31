@@ -6,6 +6,7 @@ import Slide.*;
 import Slide.Item.*;
 import Style.*;
 import Utility.*;
+import Menu.*;
 
 public class SlideFactory {
     public static Slide createSlide() {

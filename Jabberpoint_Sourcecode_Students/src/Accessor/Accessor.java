@@ -5,6 +5,7 @@ import Presentation.*;
 import Slide.*;
 import Style.*;
 import Utility.*;
+import Menu.*;
 
 import java.io.IOException;
 
@@ -20,10 +21,6 @@ import java.io.IOException;
 public abstract class Accessor {
     public static final String DEMO_NAME = "Demo presentation";
     public static final String DEFAULT_EXTENSION = ".xml";
-
-    public Accessor() {
-
-    }
 
     public static Accessor getDemoAccessor() {
         return new DemoPresentation();

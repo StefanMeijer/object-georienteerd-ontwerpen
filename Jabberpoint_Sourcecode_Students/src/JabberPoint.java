@@ -2,6 +2,7 @@ import Accessor.*;
 import Presentation.*;
 import Slide.Viewer.SlideViewerFrame;
 import Style.*;
+import Menu.*;
 
 import javax.swing.JOptionPane;
 import java.io.IOException;

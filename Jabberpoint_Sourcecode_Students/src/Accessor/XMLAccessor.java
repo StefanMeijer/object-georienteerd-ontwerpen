@@ -8,6 +8,7 @@ import Slide.*;
 import Slide.Item.SlideItemFactory;
 import Style.*;
 import Utility.*;
+import Menu.*;
 
 import java.util.Vector;
 import java.io.File;
@@ -61,7 +62,6 @@ public class XMLAccessor extends Accessor {
     protected static final String PCE = "Parser Configuration Exception";
     protected static final String UNKNOWNTYPE = "Unknown Element type";
     protected static final String NFE = "Number Format Exception";
-
 
     private String getTitle(Element element, String tagName) {
         NodeList titles = element.getElementsByTagName(tagName);

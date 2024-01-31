@@ -2,6 +2,7 @@ package Slide.Item;
 
 import Slide.*;
 import Style.*;
+import Menu.*;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;

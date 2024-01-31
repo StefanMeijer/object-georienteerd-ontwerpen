@@ -6,6 +6,7 @@ import Slide.Item.BitmapItem;
 import Slide.Item.SlideItem;
 import Slide.Item.SlideItemFactory;
 import Slide.Item.TextItem;
+import Menu.*;
 
 /**
  * A built-in demo presentation

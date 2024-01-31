@@ -1,7 +1,9 @@
 package Slide.Viewer;
 
+import Menu.MenuController;
 import Presentation.*;
 import Utility.*;
+import Menu.*;
 
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;
@@ -38,7 +40,8 @@ public class SlideViewerFrame extends JFrame {
         });
         getContentPane().add(slideViewerComponent);
         addKeyListener(new KeyController(presentation)); //Add a controller
-        setMenuBar(new MenuController(this, presentation));    //Add another controller
+
+        setMenuBar(MenuFactory.createMenuController(this, presentation)); //Add another controller
         setSize(new Dimension(WIDTH, HEIGHT)); //Same sizes a slide has
         setVisible(true);
     }

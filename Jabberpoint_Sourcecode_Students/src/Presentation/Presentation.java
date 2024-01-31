@@ -1,7 +1,8 @@
 package Presentation;
 
 import Slide.*;
-import Slide.Viewer.SlideViewerComponent;
+import Slide.Viewer.*;
+import Menu.*;
 
 import java.util.ArrayList;
 
