@@ -5,20 +5,22 @@ import Slide.Viewer.*;
 
 import java.util.ArrayList;
 
-
 /**
- * <p>Presentations keeps track of the slides in a presentation.</p>
- * <p>Only one instance of this class is available.</p>
+ * Presentation keeps track of the slides in a presentation.
+ * Only one instance of this class is available.
  *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Author: Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * Version: 1.6 2014/05/16 Sylvia Stuurman
  */
 public class Presentation {
-    private String showTitle; //The title of the presentation
-    private ArrayList<Slide> showList; //An ArrayList with slides
-    private int currentSlideNumber; //The number of the current slide
-    private SlideViewerComponent slideViewComponent; //The view component of the slides
+    private String showTitle;  // The title of the presentation
+    private ArrayList<Slide> showList;  // An ArrayList with slides
+    private int currentSlideNumber;  // The number of the current slide
+    private SlideViewerComponent slideViewComponent;  // The view component of the slides
 
+    /**
+     * Constructs a Presentation instance with default values.
+     */
     public Presentation() {
         this.showList = null;
         this.currentSlideNumber = 0;
@@ -27,42 +29,66 @@ public class Presentation {
         clear();
     }
 
+    /**
+     * Constructs a Presentation instance with a specified SlideViewerComponent.
+     *
+     * @param slideViewerComponent The SlideViewerComponent to associate with the presentation.
+     */
     public Presentation(SlideViewerComponent slideViewerComponent) {
         this.slideViewComponent = slideViewerComponent;
         clear();
     }
 
-    //Remove the presentation
+    /**
+     * Clears the presentation by initializing the showList and setting the current slide number to -1.
+     */
     public void clear() {
         showList = new ArrayList<Slide>();
         setCurrentSlideNumber(-1);
     }
 
-    //Add a slide to the presentation
+    /**
+     * Adds a slide to the presentation.
+     *
+     * @param slide The slide to be added.
+     */
     public void append(Slide slide) {
         showList.add(slide);
     }
 
-    //Exit the presentation
+    /**
+     * Exits the presentation by terminating the application with the specified exit code.
+     *
+     * @param n The exit code.
+     */
     public void exit(int n) {
         System.exit(n);
     }
 
-    //Navigate to the previous slide unless we are at the first slide
+    /**
+     * Navigates to the previous slide unless the current slide is the first one.
+     */
     public void prevSlide() {
         if (currentSlideNumber > 0) {
             setCurrentSlideNumber(currentSlideNumber - 1);
         }
     }
 
-    //Navigate to the next slide unless we are at the last slide
+    /**
+     * Navigates to the next slide unless the current slide is the last one.
+     */
     public void nextSlide() {
         if (currentSlideNumber < (showList.size() - 1)) {
             setCurrentSlideNumber(currentSlideNumber + 1);
         }
     }
 
-    //Return a slide with a specific number
+    /**
+     * Returns a slide with a specific number.
+     *
+     * @param number The slide number.
+     * @return The slide with the specified number or null if not found.
+     */
     public Slide getSlide(int number) {
         if (number < 0 || number >= getShowList().size()) {
             return null;
@@ -71,10 +97,16 @@ public class Presentation {
         return showList.get(number);
     }
 
-    //Return the current slide
+    /**
+     * Returns the current slide.
+     *
+     * @return The current slide.
+     */
     public Slide getCurrentSlide() {
         return getSlide(currentSlideNumber);
     }
+
+    // Getter and Setter methods
 
     public String getShowTitle() {
         return showTitle;
@@ -92,7 +124,11 @@ public class Presentation {
         return currentSlideNumber;
     }
 
-    //Change the current slide number and report it the the window
+    /**
+     * Changes the current slide number and updates the slide view component.
+     *
+     * @param currentSlideNumber The new current slide number.
+     */
     public void setCurrentSlideNumber(int currentSlideNumber) {
         this.currentSlideNumber = currentSlideNumber;
         if (slideViewComponent != null) {
@@ -100,6 +136,11 @@ public class Presentation {
         }
     }
 
+    /**
+     * Sets the SlideViewerComponent for the presentation.
+     *
+     * @param slideViewerComponent The SlideViewerComponent to be set.
+     */
     public void setShowView(SlideViewerComponent slideViewerComponent) {
         this.slideViewComponent = slideViewerComponent;
     }

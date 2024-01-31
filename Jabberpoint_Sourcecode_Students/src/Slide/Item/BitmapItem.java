@@ -13,20 +13,24 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 /**
- * <p>The class for a Bitmap item</p>
- * <p>Bitmap items are responsible for drawing themselves.</p>
+ * BitmapItem represents a bitmap item in a slide.
+ * Bitmap items are responsible for drawing themselves.
  *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Author: Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * Version: 1.6 2014/05/16 Sylvia Stuurman
  */
-
 public class BitmapItem extends SlideItem {
     private static final String FILE = "File ";
     private static final String NOTFOUND = " not found";
     private BufferedImage bufferedImage;
     private String imageName;
 
-    //level indicates the item-level; name indicates the name of the file with the image
+    /**
+     * Constructs a BitmapItem with a specified level and image name.
+     *
+     * @param level The item-level.
+     * @param name  The name of the file with the image.
+     */
     public BitmapItem(int level, String name) {
         super(level);
         setImageName(name);
@@ -37,7 +41,15 @@ public class BitmapItem extends SlideItem {
         }
     }
 
-    //Returns the bounding box of the image
+    /**
+     * Returns the bounding box of the image.
+     *
+     * @param g        The Graphics context.
+     * @param observer The ImageObserver.
+     * @param scale    The scale factor.
+     * @param myStyle  The style of the item.
+     * @return The bounding box of the image as a Rectangle.
+     */
     public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
         return new Rectangle((int) (myStyle.getIndent() * scale), 0,
                 (int) (this.getBufferedImage().getWidth(observer) * scale),
@@ -45,7 +57,16 @@ public class BitmapItem extends SlideItem {
                         (int) (this.getBufferedImage().getHeight(observer) * scale));
     }
 
-    //Draws the image
+    /**
+     * Draws the image on the graphics context.
+     *
+     * @param x        The x-coordinate.
+     * @param y        The y-coordinate.
+     * @param scale    The scale factor.
+     * @param g        The Graphics context.
+     * @param myStyle  The style of the item.
+     * @param observer The ImageObserver.
+     */
     public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
         int width = x + (int) (myStyle.getIndent() * scale);
         int height = y + (int) (myStyle.getLeading() * scale);
@@ -53,9 +74,16 @@ public class BitmapItem extends SlideItem {
                 (int) (this.getBufferedImage().getHeight(observer) * scale), observer);
     }
 
+    /**
+     * Returns a string representation of the BitmapItem.
+     *
+     * @return A string representation.
+     */
     public String toString() {
         return "Slide.Item.BitmapItem[" + getLevel() + "," + getImageName() + "]";
     }
+
+    // Getter and Setter methods
 
     public BufferedImage getBufferedImage() {
         return bufferedImage;

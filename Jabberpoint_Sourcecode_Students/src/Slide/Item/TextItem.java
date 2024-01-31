@@ -19,35 +19,57 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 /**
- * <p>A text item.</p>
- * <p>A text item has drawing capabilities.</p>
+ * A text item on a slide.
+ * Text items have drawing capabilities.
  *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Author: Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * Version: 1.6 2014/05/16 Sylvia Stuurman
  */
-
 public class TextItem extends SlideItem {
     private String text;
 
-    //A textitem of int level with text string
-    public TextItem(int level, String string) {
+    /**
+     * Constructs a TextItem with a specified level and text content.
+     *
+     * @param level The level of the TextItem.
+     * @param text  The content of the TextItem.
+     */
+    public TextItem(int level, String text) {
         super(level);
-        text = string;
+        this.text = text;
     }
 
-    //Returns the text
+    /**
+     * Gets the text content of the TextItem.
+     *
+     * @return The text content.
+     */
     public String getText() {
         return text == null ? "" : text;
     }
 
-    //Returns the AttributedString for the Item
+    /**
+     * Gets the AttributedString for the TextItem with the specified style and scale.
+     *
+     * @param style The style of the TextItem.
+     * @param scale The scale factor.
+     * @return The AttributedString for the TextItem.
+     */
     public AttributedString getAttributedString(Style style, float scale) {
         AttributedString attrStr = new AttributedString(getText());
         attrStr.addAttribute(TextAttribute.FONT, style.getFont(scale), 0, text.length());
         return attrStr;
     }
 
-    //Returns the bounding box of an Item
+    /**
+     * Gets the bounding box of the TextItem.
+     *
+     * @param g         The Graphics context.
+     * @param observer  The ImageObserver.
+     * @param scale     The scale factor.
+     * @param myStyle   The style of the TextItem.
+     * @return The bounding box as a Rectangle.
+     */
     public Rectangle getBoundingBox(Graphics g, ImageObserver observer,
                                     float scale, Style myStyle) {
         List<TextLayout> layouts = getLayouts(g, myStyle, scale);
@@ -67,7 +89,16 @@ public class TextItem extends SlideItem {
         return new Rectangle((int) (myStyle.getIndent() * scale), 0, xsize, ysize);
     }
 
-    //Draws the item
+    /**
+     * Draws the TextItem on the Graphics context.
+     *
+     * @param x      The x-coordinate.
+     * @param y      The y-coordinate.
+     * @param scale  The scale factor.
+     * @param g      The Graphics context.
+     * @param myStyle The style of the TextItem.
+     * @param o      The ImageObserver.
+     */
     public void draw(int x, int y, float scale, Graphics g,
                      Style myStyle, ImageObserver o) {
         if (text == null || text.length() == 0) {
@@ -101,6 +132,11 @@ public class TextItem extends SlideItem {
         return layouts;
     }
 
+    /**
+     * Returns a string representation of the TextItem.
+     *
+     * @return A string representation.
+     */
     public String toString() {
         return "Slide.Item.TextItem[" + getLevel() + "," + getText() + "]";
     }

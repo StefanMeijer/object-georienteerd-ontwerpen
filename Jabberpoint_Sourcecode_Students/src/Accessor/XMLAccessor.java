@@ -28,22 +28,26 @@ import org.w3c.dom.NodeList;
 import static Accessor.AccessorVariables.*;
 
 /**
- * Accessor.XMLAccessor, reads and writes XML files
+ * XMLAccessor reads and writes XML files for Slide presentations.
+ * It implements LoadController and SaveController interfaces.
  *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Author: Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * Version: 1.6 2014/05/16 Sylvia Stuurman
  */
-
 public class XMLAccessor implements LoadController, SaveController {
+
+    // Helper method to get the content of a specific tag from an XML element
     private String getTitle(Element element, String tagName) {
         NodeList titles = element.getElementsByTagName(tagName);
         return titles.item(0).getTextContent();
-
     }
+
+    // Load a SlideItem from an XML element and add it to the given Slide
     protected void loadSlideItem(Slide slide, Element item) {
-        int level = 1; // default
+        int level = 1; // default level
         NamedNodeMap attributes = item.getAttributes();
         String leveltext = attributes.getNamedItem(LEVEL).getTextContent();
+
         if (leveltext != null) {
             try {
                 level = Integer.parseInt(leveltext);
@@ -51,6 +55,7 @@ public class XMLAccessor implements LoadController, SaveController {
                 System.err.println(NFE);
             }
         }
+
         String type = attributes.getNamedItem(KIND).getTextContent();
         if (TEXT.equals(type)) {
             slide.append(SlideItemFactory.createTextItem(level, item.getTextContent()));
@@ -63,16 +68,19 @@ public class XMLAccessor implements LoadController, SaveController {
         }
     }
 
+    // Load a Slide presentation from an XML file
     public void loadFile(Presentation presentation, String filename) throws IOException {
         int slideNumber, itemNumber, max, maxItems;
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document document = builder.parse(new File(filename)); //Create a JDOM document
+            Document document = builder.parse(new File(filename)); // Create a JDOM document
             Element doc = document.getDocumentElement();
             presentation.setShowTitle(getTitle(doc, SHOWTITLE));
 
             NodeList slides = doc.getElementsByTagName(SLIDE);
             max = slides.getLength();
+
+            // Iterate through each slide in the XML file
             for (slideNumber = 0; slideNumber < max; slideNumber++) {
                 Element xmlSlide = (Element) slides.item(slideNumber);
                 Slide slide = SlideFactory.createSlide();
@@ -81,6 +89,8 @@ public class XMLAccessor implements LoadController, SaveController {
 
                 NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);
                 maxItems = slideItems.getLength();
+
+                // Iterate through each slide item in the current slide
                 for (itemNumber = 0; itemNumber < maxItems; itemNumber++) {
                     Element item = (Element) slideItems.item(itemNumber);
                     loadSlideItem(slide, item);
@@ -94,6 +104,8 @@ public class XMLAccessor implements LoadController, SaveController {
             System.err.println(PCE);
         }
     }
+
+    // Save a Slide presentation to an XML file
     public void saveFile(Presentation presentation, String filename) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(filename));
         out.println("<?xml version=\"1.0\"?>");
@@ -102,14 +114,20 @@ public class XMLAccessor implements LoadController, SaveController {
         out.print("<showtitle>");
         out.print(presentation.getShowTitle());
         out.println("</showtitle>");
+
+        // Iterate through each slide in the presentation
         for (int slideNumber = 0; slideNumber < presentation.getShowList().size(); slideNumber++) {
             Slide slide = presentation.getSlide(slideNumber);
             out.println("<slide>");
             out.println("<title>" + slide.getTitle() + "</title>");
             Vector<SlideItem> slideItems = slide.getSlideItems();
+
+            // Iterate through each slide item in the current slide
             for (int itemNumber = 0; itemNumber < slideItems.size(); itemNumber++) {
                 SlideItem slideItem = slideItems.elementAt(itemNumber);
                 out.print("<item kind=");
+
+                // Check the type of the slide item and print accordingly
                 if (slideItem instanceof TextItem) {
                     out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
                     out.print(((TextItem) slideItem).getText());
@@ -125,6 +143,7 @@ public class XMLAccessor implements LoadController, SaveController {
             }
             out.println("</slide>");
         }
+
         out.println("</presentation>");
         out.close();
     }

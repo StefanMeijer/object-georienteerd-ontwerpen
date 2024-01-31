@@ -13,6 +13,9 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+/**
+ * MenuController manages the menu actions for the presentation application.
+ */
 public class MenuController extends MenuBar {
     private Frame parent;
     private Presentation presentation;
@@ -20,6 +23,12 @@ public class MenuController extends MenuBar {
     private final Menu viewMenu;
     private final Menu helpMenu;
 
+    /**
+     * Constructs a MenuController with the specified frame and presentation.
+     *
+     * @param frame         The parent frame.
+     * @param presentation  The presentation to be managed.
+     */
     public MenuController(Frame frame, Presentation presentation) {
         this.parent = frame;
         this.presentation = presentation;
@@ -34,6 +43,7 @@ public class MenuController extends MenuBar {
     }
 
     private void makeFileMenu() {
+        // Creating and adding items to the File menu
         fileMenu.add(MenuFactory.createMenuItem(OPEN, this::openFileAction, false));
         fileMenu.add(MenuFactory.createMenuItem(NEW, this::newFileAction, false));
         fileMenu.add(MenuFactory.createMenuItem(SAVE, this::saveFileAction, false));
@@ -43,6 +53,7 @@ public class MenuController extends MenuBar {
     }
 
     private void makeViewMenu() {
+        // Creating and adding items to the View menu
         viewMenu.add(MenuFactory.createMenuItem(NEXT, actionEvent -> getPresentation().nextSlide(), true));
         viewMenu.add(MenuFactory.createMenuItem(PREV, actionEvent -> getPresentation().prevSlide(), false));
         viewMenu.add(MenuFactory.createMenuItem(GOTO, this::gotoPageAction, false));
@@ -50,15 +61,18 @@ public class MenuController extends MenuBar {
     }
 
     private void makeHelpMenu() {
+        // Creating and adding items to the Help menu
         helpMenu.add(MenuFactory.createMenuItem(ABOUT, actionEvent -> AboutBox.show(getParent()), false));
         setHelpMenu(helpMenu);
     }
 
+    // Action methods for menu items
+
     private void openFileAction(ActionEvent actionEvent) {
         getPresentation().clear();
 
-        XMLAccessor xmlAccessor = AccessorFactory.createXMLAccessor()
-;        try {
+        XMLAccessor xmlAccessor = AccessorFactory.createXMLAccessor();
+        try {
             xmlAccessor.loadFile(getPresentation(), TESTFILE);
             getPresentation().setCurrentSlideNumber(0);
         } catch (IOException exc) {

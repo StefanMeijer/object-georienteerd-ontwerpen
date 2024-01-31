@@ -4,13 +4,17 @@ import java.awt.Frame;
 import javax.swing.JOptionPane;
 
 /**
- * The About-box for JabberPoint.
+ * Utility class to display the About-box for JabberPoint.
  *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Author: Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * Version: 1.6 2014/05/16 Sylvia Stuurman
  */
-
 public class AboutBox {
+    /**
+     * Displays the About-box for JabberPoint.
+     *
+     * @param parent The parent frame to which the About-box is attached.
+     */
     public static void show(Frame parent) {
         JOptionPane.showMessageDialog(parent,
                 "JabberPoint is a primitive slide-show program in Java(tm). It\n" +

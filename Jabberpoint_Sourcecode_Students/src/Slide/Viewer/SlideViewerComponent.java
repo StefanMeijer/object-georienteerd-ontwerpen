@@ -12,20 +12,24 @@ import javax.swing.JFrame;
 
 import static Slide.Viewer.SlideViewerVariables.*;
 
-
 /**
- * <p>Slide.Viewer.SlideViewerComponent is a graphical component that ca display Slides.</p>
+ * Graphical component that can display slides.
  *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Author: Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * Version: 1.6 2014/05/16 Sylvia Stuurman
  */
-
 public class SlideViewerComponent extends JComponent {
-    private Slide slide; //The current slide
-    private Font labelFont; //The font for labels
-    private Presentation presentation; //The presentation
+    private Slide slide; // The current slide
+    private Font labelFont; // The font for labels
+    private Presentation presentation; // The presentation
     private JFrame frame;
 
+    /**
+     * Constructs a SlideViewerComponent with the specified presentation and frame.
+     *
+     * @param pres  The presentation to be displayed.
+     * @param frame The JFrame associated with the component.
+     */
     public SlideViewerComponent(Presentation pres, JFrame frame) {
         setBackground(BGCOLOR);
 
@@ -34,10 +38,17 @@ public class SlideViewerComponent extends JComponent {
         this.frame = frame;
     }
 
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(Slide.WIDTH, Slide.HEIGHT);
     }
 
+    /**
+     * Updates the component with the current presentation and slide data.
+     *
+     * @param presentation The current presentation.
+     * @param data         The current slide data.
+     */
     public void update(Presentation presentation, Slide data) {
         if (data == null) {
             repaint();
@@ -49,17 +60,25 @@ public class SlideViewerComponent extends JComponent {
         frame.setTitle(presentation.getShowTitle());
     }
 
-    //Draw the slide
+    /**
+     * Paints the component, drawing the current slide.
+     *
+     * @param g The Graphics context.
+     */
+    @Override
     public void paintComponent(Graphics g) {
         g.setColor(BGCOLOR);
         g.fillRect(0, 0, getSize().width, getSize().height);
+
         if (presentation.getCurrentSlideNumber() < 0 || slide == null) {
             return;
         }
+
         g.setFont(labelFont);
         g.setColor(COLOR);
         g.drawString("Slide " + (1 + presentation.getCurrentSlideNumber()) + " of " +
                 presentation.getShowList().size(), XPOS, YPOS);
+
         Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
         slide.draw(g, area, this);
     }

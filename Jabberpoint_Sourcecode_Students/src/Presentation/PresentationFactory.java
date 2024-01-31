@@ -4,14 +4,28 @@ import Slide.Item.SlideItemFactory;
 import Slide.Slide;
 import Slide.*;
 
+/**
+ * PresentationFactory provides factory methods to create Presentation instances.
+ */
 public class PresentationFactory {
+    /**
+     * Creates and returns a new Presentation instance.
+     *
+     * @return A new Presentation instance.
+     */
     public static Presentation createPresentation() {
         return new Presentation();
     }
 
+    /**
+     * Creates a demo presentation and populates it with slides.
+     *
+     * @param presentation The Presentation instance to be populated with demo content.
+     */
     public static void createDemoPresentation(Presentation presentation) {
         presentation.setShowTitle("Demo Presentation.Presentation");
 
+        // Create and populate the first slide
         Slide slide = SlideFactory.createSlide();
         slide.setTitle("JabberPoint");
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createTextItem(1, "The Java prestentation tool"), slide);
@@ -26,6 +40,7 @@ public class PresentationFactory {
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createTextItem(3, "Quit: q or Q"), slide);
         presentation.append(slide);
 
+        // Create and populate the second slide
         slide = SlideFactory.createSlide();
         slide.setTitle("Demonstration of levels and styles");
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createTextItem(1, "Level 1"), slide);
@@ -36,6 +51,8 @@ public class PresentationFactory {
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createTextItem(3, "This is how level 3 looks like"), slide);
         SlideFactory.appendSlideItemToSlide(SlideItemFactory.createTextItem(4, "And this is level 4"), slide);
         presentation.append(slide);
+
+        // Create and populate the third slide
 
         slide = SlideFactory.createSlide();
         slide.setTitle("The third slide");
