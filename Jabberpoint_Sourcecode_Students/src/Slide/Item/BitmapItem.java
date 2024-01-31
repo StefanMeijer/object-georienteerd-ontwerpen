@@ -1,7 +1,6 @@
 package Slide.Item;
 
 import Style.*;
-import Menu.*;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -12,7 +11,6 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import java.io.IOException;
-
 
 /**
  * <p>The class for a Bitmap item</p>

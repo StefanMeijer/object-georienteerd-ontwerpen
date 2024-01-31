@@ -2,41 +2,18 @@ package Menu;
 
 import Accessor.*;
 import Presentation.*;
-import Menu.*;
 import Utility.*;
+import static Menu.MenuVariables.*;
 
 import java.awt.MenuBar;
 import java.awt.Frame;
 import java.awt.Menu;
-import java.awt.MenuItem;
-import java.awt.MenuShortcut;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.Serial;
 
 import javax.swing.JOptionPane;
 
 public class MenuController extends MenuBar {
-    private static final String ABOUT = "About";
-    private static final String FILE = "File";
-    private static final String EXIT = "Exit";
-    private static final String GOTO = "Go to";
-    private static final String HELP = "Help";
-    private static final String NEW = "New";
-    private static final String NEXT = "Next";
-    private static final String OPEN = "Open";
-    private static final String PAGENR = "Page number?";
-    private static final String PREV = "Prev";
-    private static final String SAVE = "Save";
-    private static final String VIEW = "View";
-    private static final String TESTFILE = "assets/presentations/testPresentation.xml";
-    private static final String SAVEFILE = "assets/presentations/savedPresentation.xml";
-    private static final String IOEX = "IO Exception: ";
-    private static final String LOADERR = "Load Error";
-    private static final String SAVEERR = "Save Error";
-    @Serial
-    private static final long serialVersionUID = 227L;
     private Frame parent;
     private Presentation presentation;
     private final Menu fileMenu;
@@ -77,7 +54,6 @@ public class MenuController extends MenuBar {
         setHelpMenu(helpMenu);
     }
 
-    //Actions
     private void openFileAction(ActionEvent actionEvent) {
         getPresentation().clear();
 
@@ -124,15 +100,9 @@ public class MenuController extends MenuBar {
         }
     }
 
-
-    //Getters & Setters
     @Override
     public Frame getParent() {
         return parent;
-    }
-
-    public void setParent(Frame parent) {
-        this.parent = parent;
     }
 
     public Presentation getPresentation() {

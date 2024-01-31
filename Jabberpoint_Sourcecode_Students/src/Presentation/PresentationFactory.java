@@ -1,14 +1,8 @@
 package Presentation;
 
-import Accessor.XMLAccessor;
 import Slide.Item.SlideItemFactory;
 import Slide.Slide;
-import Accessor.*;
-import Presentation.*;
 import Slide.*;
-import Style.*;
-import Utility.*;
-import Menu.*;
 
 public class PresentationFactory {
     public static Presentation createPresentation() {

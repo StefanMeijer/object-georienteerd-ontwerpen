@@ -1,12 +1,5 @@
 package Utility;
 
-import Accessor.*;
-import Presentation.*;
-import Slide.*;
-import Style.*;
-import Utility.*;
-import Menu.*;
-
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 

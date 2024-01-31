@@ -1,21 +1,9 @@
 package Style;
 
-import Accessor.*;
-import Presentation.*;
-import Slide.*;
-import Style.*;
-import Utility.*;
-import Menu.*;
-
 import java.awt.Color;
 
 public class StyleFactory {
     private static Style[] styles;
-
-    // Private constructor to prevent instantiation
-    private StyleFactory() {
-        // Do nothing, prevent instantiation
-    }
 
     // Factory method for creating Style.Style objects
     public static Style createStyle(int indent, Color color, int points, int leading) {
@@ -38,10 +26,5 @@ public class StyleFactory {
             level = styles.length - 1;
         }
         return styles[level];
-    }
-
-    // Setter for the styles array
-    public static void setStyles(Style[] newStyles) {
-        styles = newStyles;
     }
 }

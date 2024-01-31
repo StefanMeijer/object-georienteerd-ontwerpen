@@ -1,11 +1,6 @@
 package Utility;
 
-import Accessor.*;
 import Presentation.*;
-import Slide.*;
-import Style.*;
-import Utility.*;
-import Menu.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;

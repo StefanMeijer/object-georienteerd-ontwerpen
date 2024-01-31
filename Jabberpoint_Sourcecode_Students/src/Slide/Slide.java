@@ -2,9 +2,7 @@ package Slide;
 
 import Slide.Item.SlideItem;
 import Slide.Item.SlideItemFactory;
-import Slide.Item.TextItem;
 import Style.*;
-import Menu.*;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -79,7 +77,4 @@ public class Slide {
         return this.items;
     }
 
-    public void setItems(Vector<SlideItem> items) {
-        this.items = items;
-    }
 }

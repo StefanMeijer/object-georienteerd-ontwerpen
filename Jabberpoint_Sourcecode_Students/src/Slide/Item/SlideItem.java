@@ -1,11 +1,6 @@
 package Slide.Item;
 
-import Accessor.*;
-import Presentation.*;
-import Slide.*;
 import Style.*;
-import Utility.*;
-import Menu.*;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -20,7 +15,7 @@ import java.awt.image.ImageObserver;
  */
 
 public abstract class SlideItem {
-    private int level = 0; //The level of the Slide.Item.SlideItem
+    private int level; //The level of the Slide.Item.SlideItem
 
     public SlideItem(int Level) {
         this.level = Level;

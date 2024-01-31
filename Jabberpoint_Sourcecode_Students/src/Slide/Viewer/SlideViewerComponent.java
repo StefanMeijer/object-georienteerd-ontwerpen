@@ -1,19 +1,16 @@
 package Slide.Viewer;
 
-import Accessor.*;
 import Presentation.*;
 import Slide.*;
-import Style.*;
-import Utility.*;
-import Menu.*;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+
+import static Slide.Viewer.SlideViewerVariables.*;
 
 
 /**
@@ -24,20 +21,10 @@ import javax.swing.JFrame;
  */
 
 public class SlideViewerComponent extends JComponent {
-    private static final long serialVersionUID = 227L;
-    private static final Color BGCOLOR = Color.white;
-    private static final Color COLOR = Color.black;
-    private static final String FONTNAME = "Dialog";
-    private static final int FONTSTYLE = Font.BOLD;
-    private static final int FONTHEIGHT = 10;
-    private static final int XPOS = 1100;
-    private static final int YPOS = 20;
-
     private Slide slide; //The current slide
     private Font labelFont; //The font for labels
     private Presentation presentation; //The presentation
     private JFrame frame;
-
 
     public SlideViewerComponent(Presentation pres, JFrame frame) {
         setBackground(BGCOLOR);

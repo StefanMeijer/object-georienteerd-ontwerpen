@@ -2,7 +2,6 @@ package Presentation;
 
 import Slide.*;
 import Slide.Viewer.*;
-import Menu.*;
 
 import java.util.ArrayList;
 
@@ -14,7 +13,6 @@ import java.util.ArrayList;
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
-
 public class Presentation {
     private String showTitle; //The title of the presentation
     private ArrayList<Slide> showList; //An ArrayList with slides
@@ -90,10 +88,6 @@ public class Presentation {
         return showList;
     }
 
-    public void setShowList(ArrayList<Slide> showList) {
-        this.showList = showList;
-    }
-
     public int getCurrentSlideNumber() {
         return currentSlideNumber;
     }
@@ -104,14 +98,6 @@ public class Presentation {
         if (slideViewComponent != null) {
             slideViewComponent.update(this, getCurrentSlide());
         }
-    }
-
-    public SlideViewerComponent getSlideViewComponent() {
-        return slideViewComponent;
-    }
-
-    public void setSlideViewComponent(SlideViewerComponent slideViewComponent) {
-        this.slideViewComponent = slideViewComponent;
     }
 
     public void setShowView(SlideViewerComponent slideViewerComponent) {

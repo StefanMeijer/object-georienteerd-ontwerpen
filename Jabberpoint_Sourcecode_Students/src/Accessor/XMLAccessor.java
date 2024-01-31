@@ -25,6 +25,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
+import static Accessor.AccessorVariables.*;
 
 /**
  * Accessor.XMLAccessor, reads and writes XML files
@@ -34,31 +35,6 @@ import org.w3c.dom.NodeList;
  */
 
 public class XMLAccessor implements LoadController, SaveController {
-
-    /**
-     * Default API to use.
-     */
-    protected static final String DEFAULT_API_TO_USE = "dom";
-
-    /**
-     * Names of xml tags of attributes
-     */
-    protected static final String SHOWTITLE = "showtitle";
-    protected static final String SLIDETITLE = "title";
-    protected static final String SLIDE = "slide";
-    protected static final String ITEM = "item";
-    protected static final String LEVEL = "level";
-    protected static final String KIND = "kind";
-    protected static final String TEXT = "text";
-    protected static final String IMAGE = "image";
-
-    /**
-     * Text of messages
-     */
-    protected static final String PCE = "Parser Configuration Exception";
-    protected static final String UNKNOWNTYPE = "Unknown Element type";
-    protected static final String NFE = "Number Format Exception";
-
     private String getTitle(Element element, String tagName) {
         NodeList titles = element.getElementsByTagName(tagName);
         return titles.item(0).getTextContent();
@@ -88,7 +64,7 @@ public class XMLAccessor implements LoadController, SaveController {
     }
 
     public void loadFile(Presentation presentation, String filename) throws IOException {
-        int slideNumber, itemNumber, max = 0, maxItems = 0;
+        int slideNumber, itemNumber, max, maxItems;
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = builder.parse(new File(filename)); //Create a JDOM document
@@ -111,7 +87,7 @@ public class XMLAccessor implements LoadController, SaveController {
                 }
             }
         } catch (IOException iox) {
-            System.err.println(iox.toString());
+            System.err.println(iox);
         } catch (SAXException sax) {
             System.err.println(sax.getMessage());
         } catch (ParserConfigurationException pcx) {
@@ -132,7 +108,7 @@ public class XMLAccessor implements LoadController, SaveController {
             out.println("<title>" + slide.getTitle() + "</title>");
             Vector<SlideItem> slideItems = slide.getSlideItems();
             for (int itemNumber = 0; itemNumber < slideItems.size(); itemNumber++) {
-                SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);
+                SlideItem slideItem = slideItems.elementAt(itemNumber);
                 out.print("<item kind=");
                 if (slideItem instanceof TextItem) {
                     out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
